@@ -44,6 +44,17 @@
                     <a class="nav-link" href="#">Explore</a>
                 </li>
                 <div class="dropdown-divider"></div>
+                {% if user.is_authenticated %}
+                <li class="nav-item px-2 border-left d-none d-lg-block">
+                    <a class="nav-link" href="#"><strong>{{ user }}</strong></a>
+                </li>
+                <li class="nav-item px-2 d-block d-lg-none">
+                    <a class="nav-link" href="#"><strong>{{ user }}</strong></a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+                {% else %}
                 <li class="nav-item px-2 border-left d-none d-lg-block">
                     <a class="nav-link" href="{% url 'login' %}">Login</a>
                 </li>
@@ -53,6 +64,7 @@
                 <li class="nav-item mx-2">
                     <a class="nav-link" href="{% url 'register' %}">Register</a>
                 </li>
+                {% endif %}
             </ul>
         </div>
 
