@@ -1,13 +1,13 @@
 {% extends "reading/layout.html" %} {% block content %}
 
 <div class="m-5">
-    <h1 class="mb-5">Login</h1>
+    <h1 class="mb-4">Login</h1>
 
     {% if message %}
-    <div class="text-danger">{{ message }}</div>
+    <div class="text-danger my-4">{{ message }}</div>
     {% endif %}
 
-    <form class="" action="{% url 'login' %}" method="POST">
+    <form class="w-50" action="{% url 'login' %}" method="POST">
         {% csrf_token %}
         <div class="form-group">
             <input autofocus class="form-control" type="text" name="username" placeholder="Username">
