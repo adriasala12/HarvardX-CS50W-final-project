@@ -47,10 +47,10 @@ class User_book(Book):
 
 class User(AbstractUser):
     following = models.ManyToManyField('self', symmetrical=False, related_name='followers')
-    reading = models.ManyToManyField(User_book, related_name='reading')
-    saved = models.ManyToManyField(User_book, related_name='saved')
-    read = models.ManyToManyField(User_book, related_name='read')
-    image = models.ImageField()
+    reading = models.ManyToManyField(User_book, related_name='reading', blank=True)
+    saved = models.ManyToManyField(User_book, related_name='saved', blank=True)
+    read = models.ManyToManyField(User_book, related_name='read', blank=True)
+    image = models.ImageField(default='static/reading/resources/image_placeholder.png')
 
 
 class Author(models.Model):
