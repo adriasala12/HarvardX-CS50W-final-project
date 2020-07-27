@@ -1,7 +1,14 @@
 {% extends "reading/layout.html" %} {% block content %}
 
-<div class="border rounded" style="width: 85%;">
-
+<div class="border rounded mx-auto mt-3" style="width: 85%;">
+    <div class="row m-4">
+        <div class="col-1 mr-4">
+            <img class="rounded-circle" src="{{ user.image }}" style="height: 80px; width: 80px;">
+        </div>
+        <div class="col d-flex align-items-center">
+            <h1>{{ user }}</h1>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
