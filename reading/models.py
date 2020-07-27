@@ -44,11 +44,13 @@ class User_book(Book):
     started = models.DateField()
     finished = models.DateField()
 
+
 class User(AbstractUser):
     following = models.ManyToManyField('self', symmetrical=False, related_name='followers')
     reading = models.ManyToManyField(User_book, related_name='reading')
     saved = models.ManyToManyField(User_book, related_name='saved')
     read = models.ManyToManyField(User_book, related_name='read')
+    image = models.ImageField()
 
 
 class Author(models.Model):
