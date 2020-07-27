@@ -10,6 +10,10 @@ def index(request):
     return render(request, "reading/index.html")
 
 
+def user_view(request):
+    return render(request, "reading/user.html")
+
+
 def login_view(request):
 
     if request.method == 'POST':
