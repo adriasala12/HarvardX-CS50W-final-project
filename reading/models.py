@@ -36,21 +36,21 @@ class Book(models.Model):
         ('26', 'Crime')
     ]
 
-    category = models.CharField(max_length=2, choices=CATEGORIES, null=True)
-    image = models.CharField(max_length=200, null=True)
-
-
-class User_book(Book):
-    started = models.DateField()
-    finished = models.DateField()
+    category = models.CharField(max_length=2, choices=CATEGORIES)
+    image = models.CharField(max_length=200, default="reading/resources/image_placeholder.png")
 
 
 class User(AbstractUser):
     following = models.ManyToManyField('self', symmetrical=False, related_name='followers')
-    reading = models.ManyToManyField(User_book, related_name='reading', blank=True)
-    saved = models.ManyToManyField(User_book, related_name='saved', blank=True)
-    read = models.ManyToManyField(User_book, related_name='read', blank=True)
+    reading_list = models.ManyToManyField(Book, through='Userbook')
     image = models.ImageField(default='static/reading/resources/image_placeholder.png')
+
+
+class Userbook(models.Model):
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    started = models.DateField()
+    finished = models.DateField()
 
 
 class Author(models.Model):
