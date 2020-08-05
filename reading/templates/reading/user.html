@@ -9,6 +9,29 @@
             <h1>{{ user }}</h1>
         </div>
     </div>
+    <div>
+        <h5>Saved:</h5>
+        <ul>
+            {% for book in user.saved.all %}
+            <li>{{ book }}</li>
+            {% endfor %}
+        </ul>
+        <h5>Reading:</h5>
+        <ul>
+            {% for book in user.reading.all %}
+            <li>{{ book }}</li>
+            {% endfor %}
+        </ul>
+        <h5>Read:</h5>
+        <ul>
+            {% for book in user.read.all %}
+            <li>{{ book }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div>
+        <button>+ Add New Book</button>
+    </div>
 </div>
 
 {% endblock %}
