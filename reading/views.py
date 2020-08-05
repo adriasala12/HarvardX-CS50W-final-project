@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.db import IntegrityError
 
 from .models import User
-from .aux import *
+from .aux import getBooksByTitle
 
 def index(request):
     return render(request, "reading/index.html")
