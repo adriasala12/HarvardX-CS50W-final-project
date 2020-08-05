@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.db import IntegrityError
 
 from .models import User
+from .aux import *
 
 def index(request):
     return render(request, "reading/index.html")
@@ -12,6 +13,14 @@ def index(request):
 
 def user_view(request):
     return render(request, "reading/user.html")
+
+
+def search(request):
+    if request.method == 'POST':
+        search = request.POST['search']
+        getBooksByTitle(search)
+    
+    return render(request, "reading/index.html")
 
 
 def login_view(request):
