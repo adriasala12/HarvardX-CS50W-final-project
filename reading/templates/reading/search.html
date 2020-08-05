@@ -1,0 +1,25 @@
+{% extends 'reading/layout.html' %} {% block content %}
+
+<div class="container mt-4">
+    <h1>Search Results</h1>
+    <br>
+    <div class="row justify-content-center">
+
+        {% for book in books %}
+        <div class="col-auto mb-3">
+            <div class="card" style="width: 18rem;">
+                <a class="text-decoration-none text-body" href="#">
+                    <img class="card-img-top" style="object-fit: contain; height: 18rem;" src="{{ book.thumbnail }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ book.title }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ book.authors }}</h6>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}

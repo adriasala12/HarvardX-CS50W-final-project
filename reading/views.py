@@ -18,9 +18,12 @@ def user_view(request):
 def search(request):
     if request.method == 'POST':
         search = request.POST['search']
-        getBooksByTitle(search)
     
-    return render(request, "reading/index.html")
+    context = {
+        'books': getBooksByTitle(search),
+    }
+
+    return render(request, "reading/search.html", context)
 
 
 def login_view(request):
