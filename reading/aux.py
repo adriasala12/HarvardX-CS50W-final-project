@@ -23,19 +23,24 @@ def getBooksByTitle(title):
     
     books = []
 
-    for item in data['items']:
+    try:
 
-        try:
-            book = Book(item['id'], item['volumeInfo']['title'], 
-                item['volumeInfo']['authors'], 
-                item['volumeInfo']['publisher'], 
-                item['volumeInfo']['publishedDate'],
-                item['volumeInfo']['pageCount'],
-                item['volumeInfo']['imageLinks']['thumbnail'])
+        for item in data['items']:
 
-            books.append(book)
-        except:
-            pass
+            try:
+                book = Book(item['id'], item['volumeInfo']['title'], 
+                    item['volumeInfo']['authors'], 
+                    item['volumeInfo']['publisher'], 
+                    item['volumeInfo']['publishedDate'],
+                    item['volumeInfo']['pageCount'],
+                    item['volumeInfo']['imageLinks']['thumbnail'])
+
+                books.append(book)
+            except:
+                pass
+
+    except:
+        pass
 
     return books
         
