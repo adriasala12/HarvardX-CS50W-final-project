@@ -42,7 +42,7 @@ class Book(models.Model):
 
 class User(AbstractUser):
     following = models.ManyToManyField('self', symmetrical=False, related_name='followers')
-    reading_list = models.ManyToManyField(Book, through='Userbook')
+    readinglist = models.ManyToManyField(Book, through='Userbook', blank=True)
     image = models.ImageField(default='static/reading/resources/image_placeholder.png')
 
 
