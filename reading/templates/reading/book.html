@@ -1,4 +1,24 @@
 {% extends 'reading/layout.html' %} {% block content %}
-<h1>{{ book.title }}</h1>
-<h3>{{ book.authors }}</h3>
+
+<div class="container row m-4">
+    <div class="col-3">
+        <img src="{{ book.thumbnail }}" alt="" style="height: 20rem;">
+    </div>
+    <div class="col-9">
+        <h1>{{ book.title }}</h1>
+        <h5>By {% for author in book.authors %}{{ author }}{% if author != book.authors|last %}, {% endif %}{% endfor %}</h5>
+        <div class="dropdown-divider"></div>
+        <p><strong>Publisher: </strong>{{ book.publisher }}</p>
+        <p><strong>Published on: </strong>{{ book.publishedDate }}</p>
+        <p><strong>ISBN10: </strong>{{ book.isbn10 }}</p>
+        <p><strong>ISBN13: </strong>{{ book.isbn13 }}</p>
+        <p><strong>Number of pages: </strong>{{ book.pageCount }}</p>
+        <p><strong>Categories: </strong>{% for category in book.categories %}{{ category }}{% if category != book.categories|last %}, {% endif %}{% endfor %}</p>
+        <p><strong>Language: </strong>{{ book.language }}</p>
+    </div>
+
+</div>
+
+
+
 {% endblock %}
