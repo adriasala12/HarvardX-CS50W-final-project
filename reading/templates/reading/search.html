@@ -12,7 +12,11 @@
                     <img class="card-img-top" style="object-fit: contain; height: 18rem;" src="{{ book.thumbnail }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ book.title }}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ book.authors }}</h6>
+                        {% for author in book.authors %}
+                        <a href="">
+                            <h6 class="card-subtitle mb-2 text-muted">{{ author }}</h6>
+                        </a>
+                        {% endfor %}
                     </div>
                 </a>
             </div>

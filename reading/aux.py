@@ -24,9 +24,7 @@ def getBooksByTitle(title):
     books = []
 
     try:
-
         for item in data['items']:
-
             try:
                 book = Book(item['id'], item['volumeInfo']['title'], 
                     item['volumeInfo']['authors'], 
@@ -38,7 +36,6 @@ def getBooksByTitle(title):
                 books.append(book)
             except:
                 pass
-
     except:
         pass
 
