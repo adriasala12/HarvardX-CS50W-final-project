@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.db import IntegrityError
 
 from .models import User
-from .aux import getBooksByTitle
+from .aux import getBooksByTitle, getBookById
 
 def index(request):
     return render(request, "reading/index.html")
@@ -24,6 +24,15 @@ def search(request):
     }
 
     return render(request, "reading/search.html", context)
+
+
+def book(request, gid):
+    
+    context = {
+        'book': getBookById(gid),
+    }
+    
+    return render(request, "reading/book.html", context)
 
 
 def login_view(request):
