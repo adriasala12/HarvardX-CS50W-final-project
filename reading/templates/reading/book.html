@@ -1,13 +1,29 @@
-{% extends 'reading/layout.html' %} {% block content %}
-
+{% extends 'reading/layout.html' %} {% block content %}{% load static %}
 <div class="container row m-4">
     <div class="col-3">
         <img src="{{ book.thumbnail }}" alt="" style="height: 20rem;">
     </div>
     <div class="col-9">
-        <h1>{{ book.title }}</h1>
-        <h5>By {% for author in book.authors %}{{ author }}{% if author != book.authors|last %}, {% endif %}{% endfor %}</h5>
-        <div class="dropdown-divider"></div>
+        <div class="row">
+            <div class="col-6">
+                <h1>{{ book.title }}</h1>
+                <h5>By {% for author in book.authors %}{{ author }}{% if author != book.authors|last %}, {% endif %}{% endfor %}</h5>
+            </div>
+            <div class="col-6">
+                <div class="rating" id="rating1"></div>
+                <div class="rating2">★★★★★</div>
+                <script>
+                    var cw = window.rating1.clientWidth; // save original 100% pixel width
+
+                    function rating(stars) {
+                        window.rating1.style.width = Math.round(cw * (stars / 5)) + 'px';
+                    }
+
+                    rating(3.5);
+                </script>
+            </div>
+        </div>
+        <div class="dropdown-divider "></div>
         <p><strong>Publisher: </strong>{{ book.publisher }}</p>
         <p><strong>Published on: </strong>{{ book.publishedDate }}</p>
         <p><strong>ISBN10: </strong>{{ book.isbn10 }}</p>
