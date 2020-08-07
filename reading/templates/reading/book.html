@@ -12,14 +12,16 @@
             <div class="col-6">
                 <div class="rating" id="rating1"></div>
                 <div class="rating2">★★★★★</div>
-                <script>
+                <script type="text/javascript">
                     var cw = window.rating1.clientWidth; // save original 100% pixel width
 
                     function rating(stars) {
                         window.rating1.style.width = Math.round(cw * (stars / 5)) + 'px';
                     }
 
-                    rating(3.5);
+                    var a = {{ book.averageRating }}
+
+                    rating(a);
                 </script>
             </div>
         </div>
