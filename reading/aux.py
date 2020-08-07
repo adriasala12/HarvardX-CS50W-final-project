@@ -32,18 +32,18 @@ class BookInfo():
 
 
 def getBooksByTitle(title):
-    
+
     query = urllib.parse.quote(title)
     response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q={query}&key={apiKey}')
     data = response.json()
-    
+
     books = []
 
     try:
         for item in data['items']:
             try:
-                book = Book(item['id'], item['volumeInfo']['title'], 
-                    item['volumeInfo']['authors'], 
+                book = Book(item['id'], item['volumeInfo']['title'],
+                    item['volumeInfo']['authors'],
                     item['volumeInfo']['imageLinks']['thumbnail'])
 
                 books.append(book)
@@ -72,7 +72,7 @@ def getBookById(id):
     data.get('volumeInfo').get('averageRating'),
     data.get('volumeInfo').get('ratingsCount'),
     data.get('volumeInfo').get('language'),
-    data.get('volumeInfo').get('buyLink'),
+    data.get('volumeInfo').get('infoLink'),
     data.get('volumeInfo').get('imageLinks').get('thumbnail'))
 
     return book

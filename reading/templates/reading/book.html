@@ -1,14 +1,16 @@
 {% extends 'reading/layout.html' %} {% block content %}{% load static %}
 <div class="container row m-4">
-    <div class="col-3">
+    <div class="col-lg-3">
         <img src="{{ book.thumbnail }}" alt="" style="height: 20rem;">
     </div>
-    <div class="col-9">
+    <div class="w-100 d-lg-none d-block"></div>
+    <div class="col">
         <div class="row">
-            <div class="col-6">
+            <div class="col">
                 <h1>{{ book.title }}</h1>
                 <h5>By {% for author in book.authors %}{{ author }}{% if author != book.authors|last %}, {% endif %}{% endfor %}</h5>
             </div>
+            <div class="w-100 d-lg-none d-block"></div>
             <div class="col">
                 <div class="row">
                     <div class="col">
@@ -16,7 +18,7 @@
                         <div class="rating2">★★★★★</div>
                     </div>
                     <ul class="list-group list-group-horizontal col">
-                        <li class="list-group-item border-0"><h3>{{book.averageRating}}</h3><span class="text-muted">({{book.ratingsCount}})</span></li>
+                        <li class="list-group-item border-0"><h3>{{book.averageRating}} <span class="text-muted align-middle" style="font-size: 15px;">({{book.ratingsCount}})</span></h3></li>
                         <li class="list-group-item border-0 text-muted"></li>
                     </ul>
                 </div>
@@ -39,7 +41,9 @@
         <p><strong>Number of pages: </strong>{{ book.pageCount }}</p>
         <p><strong>Categories: </strong>{% for category in book.categories %}{{ category }}{% if category != book.categories|last %}, {% endif %}{% endfor %}</p>
         <p><strong>Language: </strong>{{ book.language }}</p>
-
+        {% if book.buyLink != None %}
+            <a href="{{book.buyLink}}"><button class="btn btn-info" type="button">See in Google Books</button></a>
+        {% endif %}
     </div>
 </div>
 
