@@ -9,22 +9,28 @@
                 <h1>{{ book.title }}</h1>
                 <h5>By {% for author in book.authors %}{{ author }}{% if author != book.authors|last %}, {% endif %}{% endfor %}</h5>
             </div>
-            <div class="col-6">
-                <div class="rating" id="rating1"></div>
-                <div class="rating2">★★★★★</div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <div class="rating" id="rating1"></div>
+                        <div class="rating2">★★★★★</div>
+                    </div>
+                    <ul class="list-group list-group-horizontal col">
+                        <li class="list-group-item border-0"><h3>{{book.averageRating}}</h3><span class="text-muted">({{book.ratingsCount}})</span></li>
+                        <li class="list-group-item border-0 text-muted"></li>
+                    </ul>
+                </div>
                 <script type="text/javascript">
                     var cw = window.rating1.clientWidth; // save original 100% pixel width
-
                     function rating(stars) {
                         window.rating1.style.width = Math.round(cw * (stars / 5)) + 'px';
                     }
-
                     var a = {{ book.averageRating }}
-
                     rating(a);
                 </script>
             </div>
         </div>
+
         <div class="dropdown-divider "></div>
         <p><strong>Publisher: </strong>{{ book.publisher }}</p>
         <p><strong>Published on: </strong>{{ book.publishedDate }}</p>
@@ -33,8 +39,8 @@
         <p><strong>Number of pages: </strong>{{ book.pageCount }}</p>
         <p><strong>Categories: </strong>{% for category in book.categories %}{{ category }}{% if category != book.categories|last %}, {% endif %}{% endfor %}</p>
         <p><strong>Language: </strong>{{ book.language }}</p>
-    </div>
 
+    </div>
 </div>
 
 
