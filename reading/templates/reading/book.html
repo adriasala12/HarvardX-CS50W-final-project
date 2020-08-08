@@ -2,11 +2,13 @@
 <div class="container row m-4">
     <div class="col-lg-3">
         <img src="{{ book.thumbnail }}" alt="" style="height: 20rem;">
+        <div class="w-100 d-lg-none d-block"></div>
+        <a href="#"><button class="btn btn-info my-4">Add to reading list</button></a>
     </div>
     <div class="w-100 d-lg-none d-block"></div>
     <div class="col">
         <div class="row">
-            <div class="col">
+            <div class="col-5">
                 <h1>{{ book.title }}</h1>
                 <h5>By {% for author in book.authors %}{{ author }}{% if author != book.authors|last %}, {% endif %}{% endfor %}</h5>
             </div>
@@ -33,6 +35,7 @@
             </div>
         </div>
 
+
         <div class="dropdown-divider "></div>
         <p><strong>Publisher: </strong>{{ book.publisher }}</p>
         <p><strong>Published on: </strong>{{ book.publishedDate }}</p>
@@ -42,7 +45,7 @@
         <p><strong>Categories: </strong>{% for category in book.categories %}{{ category }}{% if category != book.categories|last %}, {% endif %}{% endfor %}</p>
         <p><strong>Language: </strong>{{ book.language }}</p>
         {% if book.buyLink != None %}
-            <a href="{{book.buyLink}}"><button class="btn btn-info" type="button">See in Google Books</button></a>
+            <a href="{{book.buyLink}}"><button class="btn btn-warning" type="button">See in Google Books</button></a>
         {% endif %}
     </div>
 </div>
