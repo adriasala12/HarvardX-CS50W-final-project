@@ -27,9 +27,16 @@ def search(request):
 
 
 def book(request, gid):
+    if request.user.readingList.filter(gid=gid) is not None:
+        is_in_readingList = True
+    else:
+        is_in_readingList = False
+
+    print(is_in_readingList)
 
     context = {
         'book': getBookById(gid),
+        'is_in_readingList': is_in_readingList,
     }
 
     return render(request, "reading/book.html", context)
