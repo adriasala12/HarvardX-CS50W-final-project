@@ -1,37 +1,33 @@
 {% extends "reading/layout.html" %} {% block content %}
 
-<div class="border rounded mx-auto mt-3" style="width: 85%;">
+<div class="border rounded mx-auto mt-3" style="width: 95%;">
     <div class="row m-4">
-        <div class="col-1 mr-4">
+        <div class="col-sm-2 col-6 mr-4">
             <img class="rounded-circle" src="{{ user.image }}" style="height: 80px; width: 80px;">
         </div>
         <div class="col d-flex align-items-center">
             <h1>{{ user }}</h1>
         </div>
     </div>
-    <div>
-        <h5>Saved:</h5>
-        <ul>
-            {% for book in user.saved.all %}
-            <li>{{ book }}</li>
-            {% endfor %}
-        </ul>
-        <h5>Reading:</h5>
-        <ul>
-            {% for book in user.reading.all %}
-            <li>{{ book }}</li>
-            {% endfor %}
-        </ul>
-        <h5>Read:</h5>
-        <ul>
-            {% for book in user.read.all %}
-            <li>{{ book }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-    <div>
-        <button>+ Add New Book</button>
-    </div>
 </div>
+
+<div class="row mx-auto mt-3 d-flex align-items-center" style="width:95%; background-color:pink">
+
+    <h1 id="title" class="col">Books saved:</h1>
+
+    <div class="w-100 d-lg-none d-block"></div>
+
+    <div class="btn-group col-3 h-50 " role="group">
+        <button type="button" class="btn btn-dark active">Saved</button>
+        <button type="button" class="btn btn-dark">Reading</button>
+        <button type="button" class="btn btn-dark">Read</button>
+    </div>
+
+</div>
+
+
+
+
+
 
 {% endblock %}
