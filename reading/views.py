@@ -27,12 +27,10 @@ def search(request):
 
 
 def book(request, gid):
-    if request.user.readingList.filter(gid=gid) is not None:
+    if request.user.readingList.filter(gid=gid).count() != 0:
         is_in_readingList = True
     else:
         is_in_readingList = False
-
-    print(is_in_readingList)
 
     context = {
         'book': getBookById(gid),
@@ -43,8 +41,13 @@ def book(request, gid):
 
 
 def add_book(request, gid):
-    book = Book.objects.create(gid=gid, user=request.user)
-    print(request.user.readingList.all())
+    if request.user.readingList.filter(gid=gid).count() != 0:
+        Book.objects.filter(gid=gid, user=request.user).delete()
+        is_in_readingList = True
+    else:
+        book = Book.objects.create(gid=gid, user=request.user)
+        is_in_readingList = False
+
     return HttpResponseRedirect(reverse('book', args=(gid,)))
 
 
