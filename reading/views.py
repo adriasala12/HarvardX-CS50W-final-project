@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.db import IntegrityError
 
-from .models import User
+from .models import User, Book
 from .aux import getBooksByTitle, getBookById
 
 def index(request):
@@ -18,7 +18,7 @@ def user_view(request):
 def search(request):
     if request.method == 'POST':
         search = request.POST['search']
-    
+
     context = {
         'books': getBooksByTitle(search),
     }
@@ -27,12 +27,18 @@ def search(request):
 
 
 def book(request, gid):
-    
+
     context = {
         'book': getBookById(gid),
     }
-    
+
     return render(request, "reading/book.html", context)
+
+
+def add_book(request, gid):
+    book = Book.objects.create(gid=gid, user=request.user)
+    print(request.user.readingList.all())
+    return HttpResponseRedirect(reverse('book', args=(gid,)))
 
 
 def login_view(request):
@@ -48,13 +54,13 @@ def login_view(request):
             return HttpResponseRedirect(reverse('index'))
         else:
             return render(request, "reading/login.html", {'message': "Invalid username and/or password"})
-    
+
     else:
         return render(request, "reading/login.html")
 
 
 def register_view(request):
-    
+
     if request.method == 'POST':
 
         username = request.POST['username']
@@ -64,7 +70,7 @@ def register_view(request):
 
         if password != confirmation:
             return render(request, "reading/register.html", {'message': "The passwords do not match."})
-        
+
         try:
             user = User.objects.create_user(username, email, password)
             user.save()
