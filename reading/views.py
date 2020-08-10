@@ -13,15 +13,15 @@ def index(request):
 
 def user_view(request):
 
-    books_api = []
+    books = []
     for book in request.user.readingList.all():
-        books_api.append(getBookById(book.gid))
+        dict = {'model': book, 'api': getBookById(book.gid)}
+        books.append(dict)
 
     context = {
-        'books_model': request.user.readingList.all(),
-        'books_api': books_api
+        'books': books,
     }
-
+    
     return render(request, "reading/user.html", context)
 
 
