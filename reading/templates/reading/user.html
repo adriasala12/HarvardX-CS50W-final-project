@@ -1,4 +1,6 @@
-{% extends "reading/layout.html" %} {% block content %}
+{% extends "reading/layout.html" %} {% block content %} {% load static %}
+
+<script src="{% static 'reading/js/readinglist.js' %}"></script>
 
 <div class="border rounded mx-auto mt-3" style="width: 95%;">
     <div class="row m-4">
@@ -28,7 +30,7 @@
 <div class="row mt-3 justify-content-center">
 
     {% for book in books %}
-    <div class="col-auto mb-3">
+    <div class="book col-auto mb-3">
         <div class="card" style="width: 18rem;">
             <a class="text-decoration-none text-body" href="{% url 'book' book.api.gid %}">
                 <img class="card-img-top" style="object-fit: contain; height: 18rem;" src="{{ book.api.thumbnail }}">
