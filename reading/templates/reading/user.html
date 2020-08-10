@@ -30,21 +30,28 @@
 <div class="row mt-3 justify-content-center">
 
     {% for book in books %}
-    <div class="book col-auto mb-3">
-        <div class="card" style="width: 18rem;">
-            <a class="text-decoration-none text-body" href="{% url 'book' book.api.gid %}">
-                <img class="card-img-top" style="object-fit: contain; height: 18rem;" src="{{ book.api.thumbnail }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ book.api.title }}</h5>
-                    {% for author in book.api.authors %}
-                    <!-- <a href=""> -->
-                        <h6 class="card-subtitle mb-2 text-muted">{{ author }}</h6>
-                    <!-- </a> -->
-                    {% endfor %}
-                </div>
-            </a>
+
+        {% if book.model.started == None and book.model.finished == None %}
+        <div class="saved col-auto mb-3">
+        {% elif book.model.finished != None %}
+        <div class="finished col-auto mb-3">
+        {% else %}
+        <div class="reading col-auto mb-3">
+        {% endif %}
+            <div class="card" style="width: 18rem;">
+                <a class="text-decoration-none text-body" href="{% url 'book' book.api.gid %}">
+                    <img class="card-img-top" style="object-fit: contain; height: 18rem;" src="{{ book.api.thumbnail }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ book.api.title }}</h5>
+                        {% for author in book.api.authors %}
+                        <!-- <a href=""> -->
+                            <h6 class="card-subtitle mb-2 text-muted">{{ author }}</h6>
+                        <!-- </a> -->
+                        {% endfor %}
+                    </div>
+                </a>
+            </div>
         </div>
-    </div>
     {% endfor %}
 
 </div>
