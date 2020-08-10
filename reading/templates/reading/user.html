@@ -20,9 +20,9 @@
     <div class="w-100 d-lg-none d-block"></div>
 
     <div class="btn-group col-3 h-50 " role="group">
-        <button type="button" class="btn btn-dark active">Saved</button>
-        <button type="button" class="btn btn-dark">Reading</button>
-        <button type="button" class="btn btn-dark">Read</button>
+        <button type="button" id="btn-saved" class="btn btn-dark active">Saved</button>
+        <button type="button" id="btn-reading" class="btn btn-dark">Reading</button>
+        <button type="button" id="btn-read" class="btn btn-dark">Read</button>
     </div>
 
 </div>
@@ -34,7 +34,7 @@
         {% if book.model.started == None and book.model.finished == None %}
         <div class="saved col-auto mb-3">
         {% elif book.model.finished != None %}
-        <div class="finished col-auto mb-3">
+        <div class="read col-auto mb-3">
         {% else %}
         <div class="reading col-auto mb-3">
         {% endif %}
