@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const btn_read = document.getElementById('btn-read');
 
     btn_saved.onclick = () => {
+        document.getElementById('title').innerHTML = "Saved books:";
+
         btn_saved.classList.add('active');
         btn_reading.classList.remove('active');
         btn_read.classList.remove('active');
@@ -22,6 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     btn_reading.onclick = () => {
+        document.getElementById('title').innerHTML = "Reading books:";
+
         btn_saved.classList.remove('active');
         btn_reading.classList.add('active');
         btn_read.classList.remove('active');
@@ -38,6 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     btn_read.onclick = () => {
+        document.getElementById('title').innerHTML = "Read books:";
+
         btn_saved.classList.remove('active');
         btn_reading.classList.remove('active');
         btn_read.classList.add('active');
