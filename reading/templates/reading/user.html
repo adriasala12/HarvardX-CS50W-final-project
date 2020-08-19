@@ -27,7 +27,7 @@
 
 </div>
 
-<div class="row mt-3 justify-content-center">
+<div class="row mt-3 justify-content-center" onload="loadBooks()">
 
     {% for book in books %}
 
@@ -48,17 +48,36 @@
                             <h6 class="card-subtitle mb-2 text-muted">{{ author }}</h6>
                         <!-- </a> -->
                         {% endfor %}
-                    </div>
                 </a>
+                        {% if book.model.started == None %}
+                            <form class="" action="{% url 'user' %}" method="post">
+                                {% csrf_token %}
+                                <input type="submit" value="Start reading">
+                                <input type="hidden" name="book_gid" value="{{ book.model.gid }}">
+                            </form>
+                        {% else %}
+                            <p>Started: {{ book.model.started }}</p>
+                            <button class="btn btn-danger" type="button">Finish reading</button>
+                        {% endif %}
+
+                    </div>
+
             </div>
         </div>
     {% endfor %}
 
 </div>
 
-
-
-
-
+<script type="text/javascript">
+    document.querySelectorAll('.saved').forEach(book => {
+        book.style.display = 'block'
+    });
+    document.querySelectorAll('.reading').forEach(book => {
+        book.style.display = 'none'
+    });
+    document.querySelectorAll('.read').forEach(book => {
+        book.style.display = 'none'
+    });
+</script>
 
 {% endblock %}

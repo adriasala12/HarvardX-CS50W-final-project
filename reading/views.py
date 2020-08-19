@@ -6,12 +6,23 @@ from django.db import IntegrityError
 
 from .models import User, Book
 from .aux import getBooksByTitle, getBookById
+from datetime import date
 
 def index(request):
     return render(request, "reading/index.html")
 
 
 def user_view(request):
+
+    if request.method == 'POST':
+        gid = request.POST['book_gid']
+        b = Book.objects.get(gid=gid)
+        if b.started == None:
+            b.started = date.today()
+            b.save()
+        else:
+            b.finished = date.today()
+            b.save()
 
     books = []
     for book in request.user.readingList.all():
@@ -21,7 +32,7 @@ def user_view(request):
     context = {
         'books': books,
     }
-    
+
     return render(request, "reading/user.html", context)
 
 
