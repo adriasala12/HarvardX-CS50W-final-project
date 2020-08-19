@@ -52,12 +52,20 @@
                         {% if book.model.started == None %}
                             <form class="" action="{% url 'user' %}" method="post">
                                 {% csrf_token %}
-                                <input type="submit" value="Start reading">
+                                <input type="submit" class="btn btn-primary" value="Start reading">
+                                <input type="hidden" name="book_gid" value="{{ book.model.gid }}">
+                            </form>
+                        {% elif book.model.started != None and book.model.finished == None %}
+                            <p>Started: {{ book.model.started }}</p>
+                            <!-- <button class="btn btn-danger" type="button">Finish reading</button> -->
+                            <form class="" action="{% url 'user' %}" method="post">
+                                {% csrf_token %}
+                                <input type="submit" class="btn btn-danger" value="Finish reading">
                                 <input type="hidden" name="book_gid" value="{{ book.model.gid }}">
                             </form>
                         {% else %}
-                            <p>Started: {{ book.model.started }}</p>
-                            <button class="btn btn-danger" type="button">Finish reading</button>
+                            <p class="text-muted" style="line-height:80%">Started: {{ book.model.started }}</p>
+                            <p class="text-muted" style="line-height:30%">Finished: {{ book.model.finished }}</p>
                         {% endif %}
 
                     </div>
