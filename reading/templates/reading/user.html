@@ -1,16 +1,27 @@
 {% extends "reading/layout.html" %} {% block content %} {% load static %}
 
 <script src="{% static 'reading/js/readinglist.js' %}"></script>
+<script src="{% static 'reading/js/imagepicker.js'%}"></script>
 
 <div class="border rounded mx-auto mt-3" style="width: 95%;">
     <div class="row m-4">
-        <div class="col-sm-2 col-6 mr-4 my-auto" align="center">
+        <div class="col-sm-2 col-6 mr-4 my-auto" align="center" id="userImage">
             <img class="rounded-circle" src="{{ user.image }}" style="height: 100px; width: 100px;">
             <br>
             <br>
-            <a href="#">Edit</a>
+            <button type="button" onclick="imagePicker()">Edit</button>
         </div>
-        <div class="col ">
+        <div class="col-sm-2 col-6 mr-4 my-auto" id="picker" style="display: none">
+            <form class="" action="" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="userImage">Select an image:</label>
+                    <input class="form-control" type="file" id="userImage" name="userImage">
+                    <input class="form-control" type="submit" value="Update">
+                </div>
+            </form>
+        </div>
+        <div class="col">
             <h1>{{ user }}</h1>
             <br>
             <h5><strong>Saved: </strong>{{ saved }}</h5>

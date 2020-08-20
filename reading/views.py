@@ -15,20 +15,28 @@ def index(request):
 def user_view(request):
 
     if request.method == 'POST':
-        gid = request.POST['book_gid']
-        b = Book.objects.get(gid=gid)
-        if b.started == None:
-            b.started = date.today()
-            b.save()
-        else:
-            b.finished = date.today()
-            b.save()
+        try:
+            gid = request.POST['book_gid']
+            b = Book.objects.get(gid=gid)
+            if b.started == None:
+                b.started = date.today()
+                b.save()
+            else:
+                b.finished = date.today()
+                b.save()
+        except:
+            try:
+                request.user.image = request.POST['userImage']
+                request.user.save()
+            except:
+                pass
+
 
     books = []
     saved = 0
     reading = 0
     read = 0
-    
+
     for book in request.user.readingList.all():
         dict = {'model': book, 'api': getBookById(book.gid)}
         books.append(dict)
