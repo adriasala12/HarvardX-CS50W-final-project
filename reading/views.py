@@ -25,12 +25,25 @@ def user_view(request):
             b.save()
 
     books = []
+    saved = 0
+    reading = 0
+    read = 0
+    
     for book in request.user.readingList.all():
         dict = {'model': book, 'api': getBookById(book.gid)}
         books.append(dict)
+        if book.started == None:
+            saved += 1
+        elif book.finished != None:
+            read += 1
+        else:
+            reading += 1
 
     context = {
         'books': books,
+        'saved': saved,
+        'reading': reading,
+        'read': read,
     }
 
     return render(request, "reading/user.html", context)
