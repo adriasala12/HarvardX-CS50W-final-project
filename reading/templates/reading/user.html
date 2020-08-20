@@ -4,16 +4,25 @@
 
 <div class="border rounded mx-auto mt-3" style="width: 95%;">
     <div class="row m-4">
-        <div class="col-sm-2 col-6 mr-4">
-            <img class="rounded-circle" src="{{ user.image }}" style="height: 80px; width: 80px;">
+        <div class="col-sm-2 col-6 mr-4 my-auto" align="center">
+            <img class="rounded-circle" src="{{ user.image }}" style="height: 100px; width: 100px;">
+            <br>
+            <br>
+            <a href="#">Edit</a>
         </div>
-        <div class="col d-flex align-items-center">
+        <div class="col ">
             <h1>{{ user }}</h1>
+            <br>
+            <h5><strong>Saved: </strong>{{ saved }}</h5>
+            <br>
+            <h5><strong>Reading: </strong>{{ reading }}</h5>
+            <br>
+            <h5><strong>Read: </strong>{{ read }}</h5>
         </div>
     </div>
 </div>
 
-<div class="row mx-auto mt-3 d-flex align-items-center" style="width:95%; background-color:pink">
+<div class="row mx-auto mt-3 d-flex align-items-center" style="width:95%;">
 
     <h1 id="title" class="col">Books saved:</h1>
 
@@ -27,7 +36,7 @@
 
 </div>
 
-<div class="row mt-3 justify-content-center" onload="loadBooks()">
+<div class="row mt-3 justify-content-center">
 
     {% for book in books %}
 
@@ -64,8 +73,8 @@
                                 <input type="hidden" name="book_gid" value="{{ book.model.gid }}">
                             </form>
                         {% else %}
-                            <p class="text-muted" style="line-height:80%">Started: {{ book.model.started }}</p>
-                            <p class="text-muted" style="line-height:30%">Finished: {{ book.model.finished }}</p>
+                            <p class="text-muted" style="line-height:30%"><small>Started: {{ book.model.started }}</small></p>
+                            <p class="text-muted" style="line-height:30%"><small>Finished: {{ book.model.finished }}</small></p>
                         {% endif %}
 
                     </div>
