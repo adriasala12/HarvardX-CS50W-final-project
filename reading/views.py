@@ -12,6 +12,27 @@ def index(request):
     return render(request, "reading/index.html")
 
 
+def topbooks(request):
+
+    books = Book.objects.all()
+    gids = []
+    for book in books:
+        gids.append(book.gid)
+
+    counter = {i:gids.count(i) for i in gids}
+
+    ranking = []
+    for gid in counter.keys():
+        ranking.append(getBookById(gid))
+
+    context = {
+        'books': ranking,
+    }
+
+    return render(request, "reading/top_books.html", context)
+
+
+
 def user_view(request):
 
     if request.method == 'POST':
@@ -30,7 +51,6 @@ def user_view(request):
                 request.user.save()
             except:
                 pass
-
 
     books = []
     saved = 0
