@@ -10,5 +10,6 @@ urlpatterns = [
     path("search", views.search, name="search"),
     path("book/<str:gid>", views.book, name="book"),
     path("add_book/<str:gid>", views.add_book, name="add_book"),
-    path("topbooks", views.topbooks, name="topbooks")
+    path("topbooks", views.topbooks, name="topbooks"),
+    path("topreaders", views.topreaders, name="topreaders")
 ]

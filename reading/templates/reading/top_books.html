@@ -3,7 +3,7 @@
 <div class="row mt-3 justify-content-center">
 
     {% for book in books %}
-        <div class="reading col-auto mb-3">
+        <div class="col-auto mb-3">
             <div class="card" style="width: 18rem;">
                 <a class="text-decoration-none text-body" href="{% url 'book' book.gid %}">
                     <img class="card-img-top" style="object-fit: contain; height: 18rem;" src="{{ book.thumbnail }}">

@@ -32,6 +32,27 @@ def topbooks(request):
     return render(request, "reading/top_books.html", context)
 
 
+def topreaders(request):
+
+    result = dict()
+    for user in User.objects.all():
+        counter = 0
+        for book in user.readingList.all():
+            if book.finished != None:
+                counter += 1
+
+        result[user] = counter
+
+    context = {
+        'result': sorted(result.items(), key=lambda x: x[1], reverse=True),
+    }
+
+    print(context['result'])
+
+    return render(request, "reading/top_readers.html", context)
+
+
+
 
 def user_view(request):
 
