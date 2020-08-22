@@ -5,11 +5,17 @@ from django.urls import reverse
 from django.db import IntegrityError
 
 from .models import User, Book
-from .aux import getBooksByTitle, getBookById
+from .aux import getBooksByTitle, getBookById, quotes
 from datetime import date
+import random
 
 def index(request):
-    return render(request, "reading/index.html")
+
+    context = {
+        'quote': random.choice(quotes),
+    }
+
+    return render(request, "reading/index.html", context)
 
 
 def topbooks(request):
@@ -50,8 +56,6 @@ def topreaders(request):
     print(context['result'])
 
     return render(request, "reading/top_readers.html", context)
-
-
 
 
 def user_view(request):

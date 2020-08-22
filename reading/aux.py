@@ -1,6 +1,8 @@
 import requests
 import urllib
 
+## Google Books API
+
 apiKey = 'AIzaSyDFfXEM1ApgkSRCkUnnFBlgk67D6DS9fhU'
 
 class Book():
@@ -54,6 +56,7 @@ def getBooksByTitle(title):
 
     return books
 
+
 def getBookById(id):
 
     response = requests.get(f'https://www.googleapis.com/books/v1/volumes/{id}?key={apiKey}')
@@ -76,3 +79,21 @@ def getBookById(id):
     data.get('volumeInfo').get('imageLinks').get('thumbnail'))
 
     return book
+
+
+## Quotes for the index page
+
+quotes = [
+    ["That's the thing about books. They let you travel without moving your feet.", "Jhumpa Lahiri"],
+    ["A book is a dream that you hold in your hands.", "Neil Gaiman"],
+    ["Books are mirrors: you only see in them what you already have inside you.", "Carlos Ruiz Zafón"],
+    ["We lose ourselves in books, we find ourselves there too.", "Anonymus"],
+    ["You can't buy happiness, but you can buy books and that's kind of the same thing", "Anonymus"],
+    ["Books are a uniquely portable magic.", "Stephen King"],
+    ["There is no friend as loyal as a book.", "Ernest Hamingway"],
+    ["A room without books is like a body without soul.", "Cicero"],
+    ["Once you learn to read, you will be forever free.", "Frederick Douglass"],
+    ["A reader lives a thousand lives before she dies.", "George R. R. Martin"],
+    ["Books are the plane, the train and the road. They are the destination and the journey. They are home.", "Anna Quindlen"],
+    ["A book is a gift you can open again and again.", "Garrison Keillor"]
+]
