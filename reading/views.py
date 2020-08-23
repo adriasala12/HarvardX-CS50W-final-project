@@ -23,7 +23,8 @@ def topbooks(request):
     books = Book.objects.all()
     gids = []
     for book in books:
-        gids.append(book.gid)
+        if book.finished != None:
+            gids.append(book.gid)
 
     counter = {i:gids.count(i) for i in gids}
 
