@@ -1,5 +1,6 @@
 {% extends 'reading/layout.html' %} {% block content %}{% load static %}
 <div class="container row m-4">
+    {% if user.is_authenticated %}
     <div class="col-lg-3">
         <img src="{{ book.thumbnail }}" alt="" style="height: 20rem;">
         <div class="w-100 d-lg-none d-block"></div>
@@ -8,6 +9,7 @@
         {% else %}
             <a href="{% url 'add_book' book.gid %}"><button class="btn btn-info my-4">Add to reading list</button></a>
         {% endif %}
+    {% endif %}
     </div>
     <div class="w-100 d-lg-none d-block"></div>
     <div class="col">
